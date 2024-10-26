@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CalCule | کل کیول</title>
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+    <div id="calCule">
+        <div id="calTitle">
+            <span>CalCule</span>
+        </div>
+        <div id="calculator">
+            <div id="cal-lcd">
+                <div id="history"></div>
+                <div id="current-action">
+                    <span id="operator"></span>
+                    <input id="display" type="text" value="0" disabled />
+                </div>
+            </div>
+            <div id="cal-pad">
+                <div id="act-pad">
+                    <button onclick="clearBtn()">C</button>
+                    <button onclick="clearBtn(true)">CC</button>
+                    <button onclick="operation('+')">+</button>
+                    <button onclick="operation('-')">-</button>
+                    <button onclick="operation('*')">x</button>
+                    <button onclick="operation('/')">÷</button>
+                    <button onclick="calCule()">=</button>
+                </div>
+                <div id="num-pad">
+                    <button>7</button>
+                    <button>8</button>
+                    <button>9</button>
+                    <button>4</button>
+                    <button>5</button>
+                    <button>6</button>
+                    <button>1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button>0</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="JS/script.js"></script>
+</body>
+</html>
