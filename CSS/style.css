@@ -70,9 +70,10 @@ hr {
   overflow-y: scroll;
   overflow-x: hidden;
   text-align: right;
-  font-size: 16px;
+  font-size: 20px;
   padding: 10px;
-  color: #555;
+  font-weight: bold;
+  color: #4a4a4a;
 }
 
 #cal-lcd #current-action {
