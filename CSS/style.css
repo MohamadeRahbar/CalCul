@@ -81,7 +81,7 @@ body {
   gap: 5px; 
 }
 
-#cal-lcd #current-action #display {
+#cal-lcd #current-action #io {
   
   max-width: calc(100% - 45px); 
   height: 40px;
@@ -91,6 +91,13 @@ body {
   background-color: #dadada;
   border: none;
   border-radius: 5px ;
+  
+}
+
+#io::-webkit-outer-spin-button,
+#io::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 #cal-lcd #current-action #operator {
