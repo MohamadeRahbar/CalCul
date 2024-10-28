@@ -13,6 +13,10 @@ body {
   background-image: linear-gradient(to left , #f7e5c4 , #bbeeee , #f7e5c4)
 }
 
+hr {
+  margin-bottom: 5px;
+}
+
 #calCule {
   display: flex;
   flex-direction: column;
