@@ -15,17 +15,17 @@
                 <div id="history"></div>
                 <div id="current-action">
                     <span id="operator"></span>
-                    <input id="display" type="text" value="0" disabled />
+                    <input id="io" type="number" value="" />
                 </div>
             </div>
             <div id="cal-pad">
                 <div id="act-pad">
                     <button onclick="clearBtn()">C</button>
                     <button onclick="clearBtn(true)">CC</button>
-                    <button onclick="operation('+')">+</button>
-                    <button onclick="operation('-')">-</button>
-                    <button onclick="operation('*')">x</button>
-                    <button onclick="operation('/')">÷</button>
+                    <button onclick="setAction('+')">+</button>
+                    <button onclick="setAction('-')">-</button>
+                    <button onclick="setAction('x')">x</button>
+                    <button onclick="setAction('/')">÷</button>
                     <button onclick="calCule()">=</button>
                 </div>
                 <div id="num-pad">
