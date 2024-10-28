@@ -93,15 +93,24 @@ hr {
   padding: 10px;
   text-align: right;
   background-color: #dadada;
-  border: none;
   border-radius: 5px ;
+  border: 1px solid #aaa;
   
+}
+
+#cal-lcd #current-action #io:focus {
+  outline: none;
 }
 
 #io::-webkit-outer-spin-button,
 #io::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.red-alert {
+  border: 1px solid red !important;
+  transition: border 0.1s ease-in-out;
 }
 
 #cal-lcd #current-action #operator {
