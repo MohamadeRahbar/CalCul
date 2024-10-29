@@ -18,6 +18,7 @@ const PS = {
     result: 0 
 };
 
+
 // clearing buttons fx
 function clearBtn (complete = false) {
 
@@ -42,7 +43,8 @@ function clearBtn (complete = false) {
         // create hr and append them
         let clearAction = document.createElement('hr')
         UI.history.append(clearMessage , clearAction)
-    
+        
+        
     }
 }
 
@@ -63,8 +65,9 @@ function setAction (act) {
     // if action is availble, so we have calcule it first!
     if (PS.action !== ''){
         calCule(act)
+        PS.action = act
     } else {
-        PS.number = parseFloat(UI.io.value)
+        PS.result = parseFloat(UI.io.value)
         PS.action = act
     };
     UI.io.value = ''
@@ -74,30 +77,32 @@ function setAction (act) {
 
 
 // calculate and result
-let calCule = () => {
+let calCule = (act) => {
     if (PS.action === '' ){return};
-    let finalRes = 0;
+    let finalRes = 0;    
 
     // get second number
-    PS.result = parseFloat(UI.io.value)
+    PS.number = parseFloat(UI.io.value)
 
     // call related function based on operator
     finalRes = operators[PS.action]();
-
+    
     // create history 
     historyCreator(finalRes);
 
+    // control is action exist
+    act = PS.action
+    console.log(act);
     // pipe result value as input for next calculation if exist
     UI.io.value = finalRes;
-    PS.number = finalRes;
-
-    // ?? how to implement piped num for next wihtout reset it
+    PS.result = finalRes;
+   
 };
 
 
 // history section
 function historyCreator (finalRes) {
-    let historyHtml = `${PS.number} ${PS.action} ${PS.result} = ${parseFloat(finalRes)} <hr>`;
+    let historyHtml = `${PS.result} ${PS.action} ${PS.number} = ${finalRes} <hr>`;
     UI.history.innerHTML += historyHtml
 }
 
@@ -105,10 +110,10 @@ function historyCreator (finalRes) {
 
 // declaring operators functionalities in object
 let operators = {
-    '/': function (){ return parseFloat(PS.number) / parseFloat(PS.result)},
-    'x': function (){ return parseFloat(PS.number) * parseFloat(PS.result)},
-    '-': function (){ return parseFloat(PS.number) - parseFloat(PS.result)},
-    '+': function (){ return parseFloat(PS.number) + parseFloat(PS.result)}
+    '÷': function (){ return parseFloat(PS.result) / parseFloat(PS.number)},
+    'x': function (){ return parseFloat(PS.result) * parseFloat(PS.number)},
+    '-': function (){ return parseFloat(PS.result) - parseFloat(PS.number)},
+    '+': function (){ return parseFloat(PS.result) + parseFloat(PS.number)}
 };
 
 
