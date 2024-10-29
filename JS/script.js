@@ -52,33 +52,39 @@ function clearBtn (complete = false) {
 // operators function
 function setAction (act) {
     // control io is empty or not
-    if (UI.io.value.length < 1){
+    if (UI.io.value === ''){
         console.log('Number Expected !');
         redAlert(UI.io)
         // return to prevent operator display
         return;
     }
-
     // add operator in place
     UI.operator.innerText = act;
-
-    // if action is availble, so we have calcule it first!
+    
+    // if action is availble, so we have calcule it!
     if (PS.action !== ''){
         calCule(act)
         PS.action = act
-    } else {
+    
+    } else { // if it's start point, we have to get numbers from input and get action
         PS.result = parseFloat(UI.io.value)
         PS.action = act
+
     };
+    // when an action button click, input should be clear to get next number 
     UI.io.value = ''
     
 };
 
 
-
 // calculate and result
 let calCule = (act) => {
     if (PS.action === '' ){return};
+    if (UI.io.value === ''){
+        console.log('Enter Second Number!');
+        redAlert(UI.io)
+        return
+    }
     let finalRes = 0;    
 
     // get second number
@@ -96,7 +102,7 @@ let calCule = (act) => {
     // pipe result value as input for next calculation if exist
     UI.io.value = finalRes;
     PS.result = finalRes;
-   
+    
 };
 
 
