@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>CalCule | کل کیول</title>
     <link rel="stylesheet" href="CSS/style.css">
 </head>
+
 <body>
     <div id="calCule">
         <div id="calTitle">
@@ -15,7 +17,7 @@
                 <div id="history"></div>
                 <div id="current-action">
                     <span id="operator"></span>
-                    <input id="io" type="number" value="" />
+                    <input onblur="this.focus()" autofocus id="io" type="number" value="" />
                 </div>
             </div>
             <div id="cal-pad">
@@ -43,6 +45,7 @@
             </div>
         </div>
     </div>
-<script src="JS/script.js"></script>
+    <script src="JS/script.js"></script>
 </body>
+
 </html>
