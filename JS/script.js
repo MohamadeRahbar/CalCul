@@ -110,7 +110,7 @@ let calCule = (act) => {
     UI.io.value = finalRes;
     PS.result = finalRes;
 
-    /* problem (bug): at first time or serial calcule its ok! but if double calcule (dobule enter) after a calcul, it will power result to it own continuously! i want: when press = or enter, calcule(last act) first second number to results continuously !
+    /* #1 problem (bug): at first time or serial calcule its ok! but if double calcule (dobule enter) after a calcul, it will power result to it own continuously! i want: when press = or enter, calcule(last act) first second number to results continuously !
     like this :
     num1 = 2 
     num2 = 3
@@ -160,7 +160,6 @@ function appendNumber(num) {
 
 // keyboard event
 UI.io.addEventListener("keydown", function (e) {
-    console.log(e);
     // control input value 
     if (e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/") {
         setAction(e.key)
@@ -171,10 +170,11 @@ UI.io.addEventListener("keydown", function (e) {
     } else if (e.key === "Enter") {
         calCule();
     } else if (e.key === "ArrowUp" || e.key === "ArrowDown") {
-        // how to prevent increase or decrease value!
+        //#2 how to prevent increase or decrease value!
 
     }
+    //#3 if switch operator by keyboard, at second time will show operator to UI.io.value! how to prevent it??
 
-    // how to set when keyboard pressed, UI show click on e.key??
+    //#4 how to set when keyboard pressed, UI show click on e.key??
 })
 
