@@ -7,7 +7,8 @@ const UI = {
     io: $.getElementById('io'),
     history: $.getElementById('history'),
     operator: $.getElementById('operator'),
-    numBtns: $.querySelectorAll('#num-pad button')
+    numBtns: $.querySelectorAll('#num-pad button'),
+    calPad: $.querySelector("#cal-pad button")
 };
 
 
@@ -152,22 +153,16 @@ function appendNumber(num) {
 // keyboard event
 UI.io.addEventListener("keydown", function (e) {
     // control input value 
-    if (e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/" || e.key === "=") {
-
+    if (e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/") {
         setAction(e.key)
-
     } else if (e.key === "Delete") {
-
         clearBtn(complete = true)
-
-    } else if (e.key === "Backspace") {
-
+    } else if (e.key === "Backspace" && e.shiftKey) {
         clearBtn(complete = false)
-
     } else if (e.key === "Enter") {
-
         calCule();
-
     }
+
+    // how to UI click by keyboard press
 })
 
