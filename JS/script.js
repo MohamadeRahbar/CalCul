@@ -56,6 +56,14 @@ function setAction(act) {
         // return to prevent operator display
         return;
     }
+
+    // change * and / to x and ÷ for better UI 
+    if (act === "*") {
+        act = "x"
+    } else if (act === "/") {
+        act = "÷"
+    }
+
     // add operator in place
     UI.operator.innerText = act;
 
@@ -111,7 +119,6 @@ function historyCreator(finalRes) {
 }
 
 
-
 // declaring operators functionalities in object
 let operators = {
     '÷': function () { return parseFloat(PS.result) / parseFloat(PS.number) },
@@ -137,8 +144,30 @@ UI.numBtns.forEach(function (btn) {
     })
 })
 
-
 //fx for append num to io
 function appendNumber(num) {
     UI.io.value += num
 }
+
+// keyboard event
+UI.io.addEventListener("keydown", function (e) {
+    // control input value 
+    if (e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/" || e.key === "=") {
+
+        setAction(e.key)
+
+    } else if (e.key === "Delete") {
+
+        clearBtn(complete = true)
+
+    } else if (e.key === "Backspace") {
+
+        clearBtn(complete = false)
+
+    } else if (e.key === "Enter") {
+
+        calCule();
+
+    }
+})
+
