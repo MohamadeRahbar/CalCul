@@ -8,9 +8,8 @@ const UI = {
     history: $.getElementById('history'),
     operator: $.getElementById('operator'),
     numBtns: $.querySelectorAll('#num-pad button'),
-    calPad: $.querySelector("#cal-pad button")
+    calPad: $.querySelectorAll("#cal-pad button")
 };
-
 
 // store processes
 const PS = {
@@ -50,6 +49,20 @@ function clearBtn(complete = false) {
 
 // operators function
 function setAction(act) {
+    // change * and / to x and ÷ for better UI 
+    if (act === "*") {
+        act = "x"
+    } else if (act === "/") {
+        act = "÷"
+    }
+
+    // update action whenever is first num exist
+    if (UI.io.value === '' && PS.result !== 0) {
+        PS.action = act;
+        UI.operator.innerText = act;
+        return;
+    }
+
     // control io is empty or not
     if (UI.io.value === '') {
         console.log('Number Expected !');
@@ -58,19 +71,12 @@ function setAction(act) {
         return;
     }
 
-    // change * and / to x and ÷ for better UI 
-    if (act === "*") {
-        act = "x"
-    } else if (act === "/") {
-        act = "÷"
-    }
-
     // add operator in place
     UI.operator.innerText = act;
 
     // if action is availble, so we have calcule it!
     if (PS.action !== '') {
-        calCule(act)
+        calCule()
         PS.action = act
 
     } else { // if it's start point, we have to get numbers from input and get action
@@ -80,44 +86,35 @@ function setAction(act) {
     };
     // when an action button click, input should be clear to get next number 
     UI.io.value = ''
-
 };
 
 
 // calculate and result
 let calCule = (act) => {
-    if (PS.action === '') { return };
-    if (UI.io.value === '') {
-        console.log('Enter Second Number!');
-        redAlert(UI.io)
-        return
+    if (PS.action === '') return;
+    // is second num exist for get it as static num
+    if (UI.io.value !== '') {
+        PS.number = parseFloat(UI.io.value);
     }
-    let finalRes = 0;
 
-    // get second number
-    PS.number = parseFloat(UI.io.value)
-
-    // call related function based on operator
-    finalRes = operators[PS.action]();
+    // call related function based on operator and save it as final res
+    let finalRes = operators[PS.action]();
 
     // create history 
     historyCreator(finalRes);
 
-    // control is action exist
-    act = PS.action
-    console.log(act);
-    // pipe result value as input for next calculation if exist
-    UI.io.value = finalRes;
+    // show result in UI.io
+    UI.io.value = finalRes; // نتیجه را در ورودی نمایش می‌دهیم
+
+    // update result for next calculations
     PS.result = finalRes;
 
-    /* #1 problem (bug): at first time or serial calcule its ok! but if double calcule (dobule enter) after a calcul, it will power result to it own continuously! i want: when press = or enter, calcule(last act) first second number to results continuously !
-    like this :
-    num1 = 2 
-    num2 = 3
-    calCule(*) >> 2*5 = 10 >=> 5*10 = 50 >=> 5*50 = 250 >=> ...
-
-    but now its : 2*5 = 10 >=> 10*10=100 >=> 100*100 = 10000 >=> ...
-     */
+    // check is any action exist or not
+    if (act) {
+        PS.action = act;
+    } else {
+        PS.action = '';
+    }
 };
 
 
@@ -161,8 +158,19 @@ function appendNumber(num) {
 // keyboard event
 UI.io.addEventListener("keydown", function (e) {
     // control input value 
-    if (e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/") {
-        setAction(e.key)
+    if (["+", "-", "*", "/"].includes(e.key)) {
+        setAction(e.key);
+
+        if (e.key === "*") {
+
+        } else if (e.key === "/") {
+
+        } else {
+
+        }
+
+        // prevent to add operators to UI.io
+        e.preventDefault();
     } else if (e.key === "Delete") {
         clearBtn(complete = true)
     } else if (e.key === "Backspace" && e.shiftKey) {
@@ -170,11 +178,29 @@ UI.io.addEventListener("keydown", function (e) {
     } else if (e.key === "Enter") {
         calCule();
     } else if (e.key === "ArrowUp" || e.key === "ArrowDown") {
-        //#2 how to prevent increase or decrease value!
-
+        e.preventDefault();
     }
-    //#3 if switch operator by keyboard, at second time will show operator to UI.io.value! how to prevent it??
 
-    //#4 how to set when keyboard pressed, UI show click on e.key??
+    // selected button
+    let btnSelect = null
+
+    // find selected button from calPad childs
+    for (let i = 0; i < UI.calPad.length; i++) {
+        let btn = UI.calPad[i];
+        if (btn.innerText === e.key || (e.key === "Enter" && btn.innerText === "=")) {
+            btnSelect = btn;
+            break;
+        }
+    }
+
+    console.log(btnSelect);
+    // append class to button for select in UI
+    if (btnSelect) {
+        btnSelect.classList.add('key-active');
+        setTimeout(() => btnSelect.classList.remove('key-active'), 100);
+    } else {
+        console.log("No matching button found for key:", e.key);
+    }
+
 })
 
