@@ -10,7 +10,7 @@ body {
   align-items: center;
   height: 100vh;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-image: linear-gradient(to left , #f7e5c4 , #bbeeee , #f7e5c4)
+  background-image: linear-gradient(to left , #f7e5c4 , #bbeeee , #f7e5c4);
 }
 
 hr {
@@ -135,12 +135,12 @@ hr {
 button {
   text-align: center;
   padding: 20px;
-  font-size: 18px;
+  font-size: 1.3rem;
   background-color: #f1f1f1;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.4s;
+  transition: background-color 0.1s ease-in;
 }
 
 #cal-pad #act-pad {
@@ -170,7 +170,7 @@ button:hover {
 }
 
 button:active {
-  background-color: #999;
+  background-color: #777;
 }
 
 #cal-pad #act-pad button {
@@ -182,7 +182,7 @@ button:active {
 }
 
 #cal-pad #act-pad button:active {
-  background-color: #999;
+  background-color: #777;
 }
 
 ::-webkit-scrollbar {
@@ -199,4 +199,10 @@ button:active {
 
 ::-webkit-scrollbar-track {
   background: #9a9a9a; 
+}
+
+.key-active {
+  background-color: #b8b8b8 !important;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  transition: background-color 0.5s linear;
 }
