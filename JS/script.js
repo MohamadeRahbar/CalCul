@@ -99,12 +99,12 @@ let calCule = (act) => {
 
     // call related function based on operator and save it as final res
     let finalRes = operators[PS.action]();
-
+    finalRes = parseFloat(finalRes.toFixed(4));
     // create history 
     historyCreator(finalRes);
 
     // show result in UI.io
-    UI.io.value = finalRes; // نتیجه را در ورودی نمایش می‌دهیم
+    UI.io.value = finalRes;
 
     // update result for next calculations
     PS.result = finalRes;
@@ -152,7 +152,11 @@ UI.numBtns.forEach(function (btn) {
 
 //fx for append num to io
 function appendNumber(num) {
-    UI.io.value += num
+    if (UI.io.value.length < 5) {  // Limit input to 18 digits
+        UI.io.value += num;
+    } else {
+        redAlert(UI.io)
+    }
 }
 
 // keyboard event
