@@ -3,8 +3,7 @@
 Hey, 
 can U improve this calculator by any libraries or frameworks?
 it will be my pleasure! :)
-feel free!!
-U can copy, edit , delete or.. code
+feel free!! U can copy, edit , delete or.. code
 its my first mini-project for https://codebox.ir/
 Thanks All.
 Mr.Alpha || https://github.com/MohamadeRahbar
@@ -224,4 +223,3 @@ UI.io.addEventListener("keydown", function (e) {
     }
 
 })
-

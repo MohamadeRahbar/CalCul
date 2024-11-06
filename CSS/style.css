@@ -1,3 +1,4 @@
+/* designed by MRAlpha || https://github.com/MohamadeRahbar  */
 * {
   padding: 0;
   margin: 0;
@@ -53,7 +54,7 @@ hr {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 0px 20px #999;
-  max-width: 360px;
+  max-width: 400px;
 }
 
 #cal-lcd {
@@ -135,7 +136,7 @@ hr {
 button {
   text-align: center;
   padding: 20px;
-  font-size: 1.3rem;
+  font-size: 1.59rem;
   background-color: #f1f1f1;
   border: none;
   border-radius: 5px;
@@ -201,8 +202,34 @@ button:active {
   background: #9a9a9a; 
 }
 
+/* class for select key from keyboard */
 .key-active {
   background-color: #b8b8b8 !important;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   transition: background-color 0.5s linear;
 }
+
+/* custom tool tip instead of using title attr */
+button[data-title] {
+  position: relative; 
+}
+
+button[data-title]:hover::before {
+  content: attr(data-title); 
+  position: absolute;
+  bottom: 100%; 
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fafafa; 
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.69rem;
+  white-space: nowrap; 
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.2s ease-in-out; 
+}
+
+
+/* by MRAlpha || https://github.com/MohamadeRahbar  */

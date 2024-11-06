@@ -8,6 +8,7 @@
 </head>
 
 <body>
+    <!-- whole calc -->
     <div id="calCule">
         <div id="calTitle">
             <span>CalCule</span>
@@ -22,13 +23,13 @@
             </div>
             <div id="cal-pad">
                 <div id="act-pad">
-                    <button title="Shift + Backspace" onclick="clearBtn()">C</button>
-                    <button title="Del" onclick="clearBtn(true)">CC</button>
-                    <button title="-" onclick="setAction('-')">-</button>
-                    <button title="/" onclick="setAction('÷')">÷</button>
-                    <button title="+" onclick="setAction('+')">+</button>
-                    <button title="x or * " onclick="setAction('x')">x</button>
-                    <button title="Enter" onclick="calCule()">=</button>
+                    <button data-title="Shift + Backspace" onclick="clearBtn()">C</button>
+                    <button data-title="Del" onclick="clearBtn(true)">CC</button>
+                    <button onclick="setAction('-')">-</button>
+                    <button data-title="/" onclick="setAction('÷')">÷</button>
+                    <button onclick="setAction('+')">+</button>
+                    <button data-title="x or *" onclick="setAction('x')">x</button>
+                    <button data-title="Enter" onclick="calCule()">=</button>
                 </div>
                 <div id="num-pad">
                     <button>7</button>
@@ -45,6 +46,7 @@
             </div>
         </div>
     </div>
+    <!-- code by MRAlhpa || https://github.com/MohamadeRahbar -->
     <script src="JS/script.js"></script>
 </body>
 
