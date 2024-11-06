@@ -157,43 +157,49 @@ function appendNumber(num) {
 
 // keyboard event
 UI.io.addEventListener("keydown", function (e) {
-    // control input value 
+    // var to store selected button
+    let btnSelect = null
+
+    // control input value (operator / num)
     if (["+", "-", "*", "/"].includes(e.key)) {
+        // prevent select * by tap on x on keyboard
+        if (e.key === "x") return;
         setAction(e.key);
-
-        if (e.key === "*") {
-
-        } else if (e.key === "/") {
-
-        } else {
-
-        }
-
         // prevent to add operators to UI.io
         e.preventDefault();
+
     } else if (e.key === "Delete") {
-        clearBtn(complete = true)
+        /* Array.from() >> is a method to creat an array from any array-like & objects
+        here, UI.calpad is an HTMl NodeList object of buttons and i want to use find method, so i have to make an array from origin :)
+        */
+        btnSelect = Array.from(UI.calPad).find(function (btn) {
+            return btn.innerText === 'CC';
+        });
+        clearBtn(true);
     } else if (e.key === "Backspace" && e.shiftKey) {
-        clearBtn(complete = false)
+        btnSelect = Array.from(UI.calPad).find(function (btn) {
+            return btn.innerText === 'C';
+        });
+        clearBtn(false);
     } else if (e.key === "Enter") {
+        btnSelect = Array.from(UI.calPad).find(function (btn) {
+            return btn.innerText === '=';
+        });
         calCule();
     } else if (e.key === "ArrowUp" || e.key === "ArrowDown") {
         e.preventDefault();
     }
 
-    // selected button
-    let btnSelect = null
-
-    // find selected button from calPad childs
-    for (let i = 0; i < UI.calPad.length; i++) {
-        let btn = UI.calPad[i];
-        if (btn.innerText === e.key || (e.key === "Enter" && btn.innerText === "=")) {
+    // find selected button from calPad 
+    UI.calPad.forEach(function (btn) {
+        if (e.key === "*" && btn.innerText === 'x') {
             btnSelect = btn;
-            break;
+        } else if (e.key === "/" && btn.innerText === '÷') {
+            btnSelect = btn;
+        } else if (btn.innerText === e.key) {
+            btnSelect = btn;
         }
-    }
-
-    console.log(btnSelect);
+    });
     // append class to button for select in UI
     if (btnSelect) {
         btnSelect.classList.add('key-active');
