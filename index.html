@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>CalCule | کل کیول</title>
     <link rel="stylesheet" href="CSS/style.css">
 </head>
+
 <body>
+    <!-- whole calc -->
     <div id="calCule">
         <div id="calTitle">
             <span>CalCule</span>
@@ -15,18 +18,18 @@
                 <div id="history"></div>
                 <div id="current-action">
                     <span id="operator"></span>
-                    <input id="display" type="text" value="0" disabled />
+                    <input onblur="this.focus()" autofocus id="io" type="number" value="" />
                 </div>
             </div>
             <div id="cal-pad">
                 <div id="act-pad">
-                    <button onclick="clearBtn()">C</button>
-                    <button onclick="clearBtn(true)">CC</button>
-                    <button onclick="operation('+')">+</button>
-                    <button onclick="operation('-')">-</button>
-                    <button onclick="operation('*')">x</button>
-                    <button onclick="operation('/')">÷</button>
-                    <button onclick="calCule()">=</button>
+                    <button data-title="Shift + Backspace" onclick="clearBtn()">C</button>
+                    <button data-title="Del" onclick="clearBtn(true)">CC</button>
+                    <button onclick="setAction('-')">-</button>
+                    <button data-title="/" onclick="setAction('÷')">÷</button>
+                    <button onclick="setAction('+')">+</button>
+                    <button data-title="x or *" onclick="setAction('x')">x</button>
+                    <button data-title="Enter" onclick="calCule()">=</button>
                 </div>
                 <div id="num-pad">
                     <button>7</button>
@@ -43,6 +46,8 @@
             </div>
         </div>
     </div>
-<script src="JS/script.js"></script>
+    <!-- code by MRAlhpa || https://github.com/MohamadeRahbar -->
+    <script src="JS/script.js"></script>
 </body>
+
 </html>

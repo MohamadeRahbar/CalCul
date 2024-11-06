@@ -1,3 +1,4 @@
+/* designed by MRAlpha || https://github.com/MohamadeRahbar  */
 * {
   padding: 0;
   margin: 0;
@@ -10,7 +11,11 @@ body {
   align-items: center;
   height: 100vh;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-image: linear-gradient(to left , #f7e5c4 , #bbeeee , #f7e5c4)
+  background-image: linear-gradient(to left , #f7e5c4 , #bbeeee , #f7e5c4);
+}
+
+hr {
+  margin-bottom: 5px;
 }
 
 #calCule {
@@ -49,7 +54,7 @@ body {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 0px 20px #999;
-  max-width: 360px;
+  max-width: 400px;
 }
 
 #cal-lcd {
@@ -66,9 +71,10 @@ body {
   overflow-y: scroll;
   overflow-x: hidden;
   text-align: right;
-  font-size: 16px;
+  font-size: 20px;
   padding: 10px;
-  color: #555;
+  font-weight: bold;
+  color: #4a4a4a;
 }
 
 #cal-lcd #current-action {
@@ -81,7 +87,7 @@ body {
   gap: 5px; 
 }
 
-#cal-lcd #current-action #display {
+#cal-lcd #current-action #io {
   
   max-width: calc(100% - 45px); 
   height: 40px;
@@ -89,8 +95,24 @@ body {
   padding: 10px;
   text-align: right;
   background-color: #dadada;
-  border: none;
   border-radius: 5px ;
+  border: 1px solid #aaa;
+  
+}
+
+#cal-lcd #current-action #io:focus {
+  outline: none;
+}
+
+#io::-webkit-outer-spin-button,
+#io::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.red-alert {
+  border: 1px solid red !important;
+  transition: border 0.1s ease-in-out;
 }
 
 #cal-lcd #current-action #operator {
@@ -114,12 +136,12 @@ body {
 button {
   text-align: center;
   padding: 20px;
-  font-size: 18px;
+  font-size: 1.59rem;
   background-color: #f1f1f1;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.4s;
+  transition: background-color 0.1s ease-in;
 }
 
 #cal-pad #act-pad {
@@ -149,7 +171,7 @@ button:hover {
 }
 
 button:active {
-  background-color: #999;
+  background-color: #777;
 }
 
 #cal-pad #act-pad button {
@@ -161,7 +183,7 @@ button:active {
 }
 
 #cal-pad #act-pad button:active {
-  background-color: #999;
+  background-color: #777;
 }
 
 ::-webkit-scrollbar {
@@ -179,3 +201,35 @@ button:active {
 ::-webkit-scrollbar-track {
   background: #9a9a9a; 
 }
+
+/* class for select key from keyboard */
+.key-active {
+  background-color: #b8b8b8 !important;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  transition: background-color 0.5s linear;
+}
+
+/* custom tool tip instead of using title attr */
+button[data-title] {
+  position: relative; 
+}
+
+button[data-title]:hover::before {
+  content: attr(data-title); 
+  position: absolute;
+  bottom: 100%; 
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fafafa; 
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.69rem;
+  white-space: nowrap; 
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.2s ease-in-out; 
+}
+
+
+/* by MRAlpha || https://github.com/MohamadeRahbar  */
