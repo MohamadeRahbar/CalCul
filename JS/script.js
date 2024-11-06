@@ -1,4 +1,14 @@
-// additional comments will be deleted at last
+/* 
+2024/11 || calCule v1.00
+Hey, 
+can U improve this calculator by any libraries or frameworks?
+it will be my pleasure! :)
+feel free!!
+U can copy, edit , delete or.. code
+its my first mini-project for https://codebox.ir/
+Thanks All.
+Mr.Alpha || https://github.com/MohamadeRahbar
+*/
 
 const $ = document;
 
@@ -11,7 +21,7 @@ const UI = {
     calPad: $.querySelectorAll("#cal-pad button")
 };
 
-// store processes
+// store processes logically
 const PS = {
     action: '',
     number: 0,
@@ -50,7 +60,7 @@ function clearBtn(complete = false) {
 // operators function
 function setAction(act) {
     // change * and / to x and ÷ for better UI 
-    if (act === "*") {
+    if (act === "*" || act === "x") {
         act = "x"
     } else if (act === "/") {
         act = "÷"
@@ -161,6 +171,7 @@ function appendNumber(num) {
 
 // keyboard event
 UI.io.addEventListener("keydown", function (e) {
+    // limit input numbers to 18 digits 
     if (UI.io.value.length > 18 && !["Backspace", "Delete", "F5"].includes(e.key)) {
         redAlert(UI.io);
         e.preventDefault();
@@ -169,9 +180,7 @@ UI.io.addEventListener("keydown", function (e) {
     let btnSelect = null
 
     // control input value (operator / num)
-    if (["+", "-", "*", "/"].includes(e.key)) {
-        // prevent select * by tap on x on keyboard
-        if (e.key === "x") return;
+    if (["+", "-", "x", "*", "/"].includes(e.key)) {
         setAction(e.key);
         // prevent to add operators to UI.io
         e.preventDefault();
@@ -200,7 +209,7 @@ UI.io.addEventListener("keydown", function (e) {
 
     // find selected button from calPad 
     UI.calPad.forEach(function (btn) {
-        if (e.key === "*" && btn.innerText === 'x') {
+        if ((e.key === "*" || e.key === "x") && btn.innerText === 'x') {
             btnSelect = btn;
         } else if (e.key === "/" && btn.innerText === '÷') {
             btnSelect = btn;
