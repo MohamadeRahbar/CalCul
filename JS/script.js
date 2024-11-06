@@ -150,17 +150,21 @@ UI.numBtns.forEach(function (btn) {
     })
 })
 
-//fx for append num to io
+//fx for append num to io and limit input digits 
 function appendNumber(num) {
-    if (UI.io.value.length < 5) {  // Limit input to 18 digits
-        UI.io.value += num;
+    if (UI.io.value.length > 18) {
+        redAlert(UI.io);
     } else {
-        redAlert(UI.io)
+        UI.io.value += num;
     }
 }
 
 // keyboard event
 UI.io.addEventListener("keydown", function (e) {
+    if (UI.io.value.length > 18 && !["Backspace", "Delete", "F5"].includes(e.key)) {
+        redAlert(UI.io);
+        e.preventDefault();
+    }
     // var to store selected button
     let btnSelect = null
 
@@ -208,8 +212,6 @@ UI.io.addEventListener("keydown", function (e) {
     if (btnSelect) {
         btnSelect.classList.add('key-active');
         setTimeout(() => btnSelect.classList.remove('key-active'), 100);
-    } else {
-        console.log("No matching button found for key:", e.key);
     }
 
 })
